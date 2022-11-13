@@ -43,6 +43,7 @@ def EditCurso(request):
     messages.success(request, '¡Curso editado!')
     return redirect('/')
 
+@login_required
 def EstudiantesHome(request):
     estudianteslistado = Estudiante.objects.all()
     return render(request, "estudiante.html", {"estudiantes": estudianteslistado})
@@ -81,6 +82,7 @@ def EditEstudiante(request):
     messages.success(request, '¡Estudiante editado!')
     return redirect('/EstudianteHome')
 
+@login_required
 def ProfesorHome(request):
     profesorlistado = Profesor.objects.all()
     return render(request, "profesor.html", {"profesores": profesorlistado})
