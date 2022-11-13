@@ -1,8 +1,12 @@
 from django.shortcuts import render, redirect
 from .models import *
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout
 
 # Create your views here.
+
+@login_required
 
 def home(request):
     cursoslistado = Curso.objects.all()
@@ -116,3 +120,7 @@ def EditProfesor(request):
     profesor.save()
     messages.success(request, '¡Profesor editado!')
     return redirect('/ProfesorHome')
+
+def salir (request):
+    logout(request)
+    return redirect('/')

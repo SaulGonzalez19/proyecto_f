@@ -18,4 +18,5 @@ urlpatterns = [
     path('ProfesorHome/EliminarProfesor/<id>', views.EliminarProfesor),
     path('ProfesorHome/EditarProfesor/<id>', views.EditarProfesor),
     path('ProfesorHome/EditProfesor/', views.EditProfesor),
+    path('CerrarSesion/', views.salir, name="Cerrar Sesión")
 ]
