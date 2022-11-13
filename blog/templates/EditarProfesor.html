@@ -1,0 +1,40 @@
+{% extends "./base.html" %}
+
+{% block title %} Gestor de Profesores {% endblock %}
+
+{% block body %}
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+        <h2>Edición de Profesores</h2>
+        <div class="card">
+            <div class="card-body">
+                <form action="/ProfesorHome/EditProfesor/" method="POST">{% csrf_token %}
+                    <div class="form-group py-2">
+                        <input type="text" id="IDNum" name="IDNum" value="{{profesor.id}}" class="form-control" 
+                        placeholder="ID" minlength="2" maxlength="4" readonly required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="text" id="NombreTxt" name="NombreTxt" value="{{profesor.nombre}}" class="form-control" 
+                        placeholder="Nombre" maxlength="50" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="text" id="ApellidoTxt" name="ApellidoTxt" value="{{profesor.apellido}}" class="form-control" 
+                        placeholder="Apellido" maxlength="50" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="text" id="EmailTxt" name="EmailTxt" value="{{profesor.email}}" class="form-control" 
+                        placeholder="Mail" maxlength="50" required>
+                    </div>
+                    <div class="form-group py-2">
+                        <input type="text" id="ProfesionTxt" name="ProfesionTxt" value="{{profesor.profesion}}" class="form-control" 
+                        placeholder="Profesor" maxlength="50" required>
+                    </div>
+                    <div class="form-group">
+                       <button type="submit" class="btn btn-success btn-block text-white">Guardar Estudiante</button>
+                    </div>
+                </form>
+            </div>
+        </div> 
+    </div>
+</div>
+{% endblock %}
