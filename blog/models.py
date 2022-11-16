@@ -31,3 +31,14 @@ class Profesor(models.Model):
     def __str__(self):
         texto = "{0}, {1} ({2})"
         return texto.format(self.apellido, self.nombre, self.id)
+
+class Articulos(models.Model):
+    titulo = models.CharField(max_length=50)
+    contenido = models.TextField()
+    imagen = models.URLField()
+    autor = models.ForeignKey(Profesor, on_delete=models.CASCADE)
+    fecha = models.DateTimeField()
+
+    def __str__(self):
+        texto = "{0}, {1} ({2})"
+        return texto.format(self.titulo, self.autor, self.fecha)
