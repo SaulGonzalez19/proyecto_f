@@ -1,4 +1,4 @@
-{% extends "./base.html" %}
+{% extends "./index.html" %}
 {% load static %}
 
 {% block title %} Gestor de Cursos {% endblock %}
@@ -51,6 +51,7 @@
                     </tr>
                 </thead>
                 <tbody>
+                    {% if user.is_authenticated %}
                     {% for c in cursos %}
                     <tr>
                         <td>{{forloop.counter}}</td>
@@ -61,6 +62,7 @@
                         <td><a href="EliminarCurso/{{c.codigo}}" class="btn btn-danger">Eliminar</a></td>
                     </tr>
                     {% endfor %}
+                    {% endif%}
                 </tbody>
             </table>
         </div>

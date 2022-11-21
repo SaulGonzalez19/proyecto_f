@@ -1,13 +1,22 @@
-{% extends "./base.html" %}
+{% extends "./index.html" %}
 {% load static %}
 
 {% block title %} {{ articulo.titulo }} {% endblock %}
 
 {% block body %}
-    {% block TituloTxt %}
-        <h1>{{articulo.titulo}}</h1>
-    {% endblock %} 
-<p>
-    Escrito por: {{ articulo.autor }} </p>
-<p>{{ articulo.contenido }}</p>
+<article>
+    <!-- Post header-->
+    <header class="mb-4">
+        <!-- Post title-->
+        <h1 class="fw-bolder mb-1"> {{ articulo.titulo }} </h1>
+        <!-- Post meta content-->
+        <div class="text-muted fst-italic mb-2">Escrito por {{ articulo.autor }}</div>
+    </header>
+    <!-- Preview image figure-->
+    <figure class="mb-2"><img class="img-fluid rounded" src="{{ articulo.imagen }}" alt="..." /></figure>
+    <!-- Post content-->
+    <section class="mb-5">
+        <p class="fs-5 mb-4"> {{ articulo.contenido}} </p>
+    </section>
+</article>
 {% endblock %}

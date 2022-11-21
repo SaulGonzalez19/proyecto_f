@@ -120,7 +120,8 @@ def EditProfesor(request):
     profesor = Profesor.objects.get(id=id)
     profesor.nombre = nombre
     profesor.apellido = apellido
-    profesor.mail = mail
+    profesor.email = mail
+    profesor.profesion = profesion
     profesor.save()
     messages.success(request, '¡Profesor editado!')
     return redirect('/ProfesorHome')
@@ -129,6 +130,7 @@ def salir (request):
     logout(request)
     return redirect('/')
 
+@login_required
 def ArticuloHome(request):
     articulolistado = Articulos.objects.all()
     return render(request, "blog.html", {"articulos": articulolistado})
@@ -157,13 +159,13 @@ def EditArticulo(request):
     titulo = request.POST['TituloTxt']
     contenido = request.POST['ContenidoTxt']
     imagen = request.POST['ImgUrl']
-    autor = request.POST['ProfesorTxt']
+    autor = request.POST['AutorTxt']
 
     articulo = Articulos.objects.get(titulo=titulo)
-    Articulos.titulo = titulo
-    Articulos.contenido = contenido
-    Articulos.imagen = imagen
-    Articulos.autor = autor
+    articulo.titulo = titulo
+    articulo.contenido = contenido
+    articulo.imagen = imagen
+    articulo.autor = autor
     articulo.save()
     messages.success(request, '¡Articulo editado!')
     return redirect('/ArticuloHome')
