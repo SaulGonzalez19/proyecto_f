@@ -18,5 +18,11 @@ urlpatterns = [
     path('ProfesorHome/EliminarProfesor/<id>', views.EliminarProfesor),
     path('ProfesorHome/EditarProfesor/<id>', views.EditarProfesor),
     path('ProfesorHome/EditProfesor/', views.EditProfesor),
+    path('ArticuloHome/', views.ArticuloHome),
+    path('ArticuloHome/NuevoArticulo/', views.NuevoArticulo),
+    path('ArticuloHome/LeerArticulo/<titulo>', views.LeerArticulo),
+    path('ArticuloHome/EliminarArticulo/<titulo>', views.EliminarArticulo),
+    path('ArticuloHome/EditarArticulo/<titulo>', views.EditarArticulo),
+    path('ArticuloHome/EditArticulo/', views.EditArticulo),
     path('CerrarSesion/', views.salir, name="Cerrar Sesión")
 ]

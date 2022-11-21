@@ -3,6 +3,8 @@ from .models import *
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
+from django.views.generic.detail import DetailView
+from django.utils import timezone
 
 # Create your views here.
 
@@ -126,3 +128,46 @@ def EditProfesor(request):
 def salir (request):
     logout(request)
     return redirect('/')
+
+def ArticuloHome(request):
+    articulolistado = Articulos.objects.all()
+    return render(request, "blog.html", {"articulos": articulolistado})
+
+def NuevoArticulo(request):
+    titulo = request.POST['TituloTxt']
+    contenido = request.POST['ContenidoTxt']
+    imagen = request.POST['ImgUrl']
+    autor = request.POST['AutorTxt']
+
+    articulo = Articulos.objects.create(titulo=titulo, contenido=contenido, imagen=imagen, autor=autor)
+    messages.success(request, '¡Nuevo artículo creado!')
+    return redirect('/ArticuloHome')
+
+def EliminarArticulo(request, titulo):
+    articulo = Articulos.objects.get(titulo=titulo)
+    articulo.delete()
+    messages.success(request, '¡Artículo Eliminado!')
+    return redirect('/ArticuloHome')
+
+def EditarArticulo(request, titulo):
+    articulo = Articulos.objects.get(titulo=titulo)
+    return render(request, "EditarBlog.html", {"articulo": articulo})
+
+def EditArticulo(request):
+    titulo = request.POST['TituloTxt']
+    contenido = request.POST['ContenidoTxt']
+    imagen = request.POST['ImgUrl']
+    autor = request.POST['ProfesorTxt']
+
+    articulo = Articulos.objects.get(titulo=titulo)
+    Articulos.titulo = titulo
+    Articulos.contenido = contenido
+    Articulos.imagen = imagen
+    Articulos.autor = autor
+    articulo.save()
+    messages.success(request, '¡Articulo editado!')
+    return redirect('/ArticuloHome')
+
+def LeerArticulo(request, titulo):
+    articulo = Articulos.objects.get(titulo=titulo)
+    return render(request, "LeerArticulo.html", {"articulo": articulo})

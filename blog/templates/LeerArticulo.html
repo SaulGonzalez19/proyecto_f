@@ -1,0 +1,13 @@
+{% extends "./base.html" %}
+{% load static %}
+
+{% block title %} {{ articulo.titulo }} {% endblock %}
+
+{% block body %}
+    {% block TituloTxt %}
+        <h1>{{articulo.titulo}}</h1>
+    {% endblock %} 
+<p>
+    Escrito por: {{ articulo.autor }} </p>
+<p>{{ articulo.contenido }}</p>
+{% endblock %}

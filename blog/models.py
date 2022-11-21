@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import date, datetime
 
 # Create your models here.
 
@@ -29,8 +30,8 @@ class Profesor(models.Model):
     profesion = models.CharField(max_length=30)
 
     def __str__(self):
-        texto = "{0}, {1} ({2})"
-        return texto.format(self.apellido, self.nombre, self.id)
+        texto = "{0} {1} ({2})"
+        return texto.format(self.nombre, self.apellido, self.id)
 
 class Articulos(models.Model):
     titulo = models.CharField(max_length=50)
@@ -40,5 +41,5 @@ class Articulos(models.Model):
     fecha = models.DateTimeField()
 
     def __str__(self):
-        texto = "{0}, {1} ({2})"
-        return texto.format(self.titulo, self.autor, self.fecha)
+        texto = "{0}, {1}"
+        return texto.format(self.titulo, self.autor)
